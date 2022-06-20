@@ -1,2 +1,19 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>GA4 Faker</h1>
+
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.hidden_field :fake, value: "yes" %>
+
+  <%= form.label :environment %><br>
+  <%= form.select :environment, ["integration", "staging"], selected: params[:environment] %><br>
+
+  <%= form.label :interaction_type %><br>
+  <%= form.text_field :interaction_type, value: params[:interaction_type] %><br>
+
+  <%= form.label :iterations %><br>
+  <%= form.number_field :iterations, value: params[:iterations] %><br>
+
+  <%= form.submit "Go" %>
+<% end %>
+
+<%= turbo_frame_tag id="faker-output" do %>
+<% end %>
