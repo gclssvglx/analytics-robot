@@ -1,0 +1,6 @@
+<% interaction_type, iterations = run.split(":") %>
+<tr>
+  <td width="50%"><%= job.select :interaction_type, interaction_types, selected: interaction_type %></td>
+  <td width="30%"><%= job.number_field :iterations, value: iterations %></td>
+  <td width="20%"><button class="remove-run">Remove</button></td>
+</tr>

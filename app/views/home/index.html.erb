@@ -1,16 +1,29 @@
 <h1>GA4 Faker</h1>
 
 <%= form_with url: fake_path, method: :post do |form| %>
-  <%= form.hidden_field :fake, value: "yes" %>
-
   <%= form.label :environment %><br>
   <%= form.select :environment, @environments, selected: params[:environment] %><br>
 
-  <%= form.label :interaction_type %><br>
-  <%= form.select :interaction_type, @interaction_types, selected: params[:interaction_type] %><br>
+  <% unless @runs.present? %>
+    <% @runs = ["#{@interaction_types.first}:1"] %>
+  <% end %>
 
-  <%= form.label :iterations %><br>
-  <%= form.number_field :iterations, value: params[:iterations] || 1 %><br>
+  <table id="runs">
+    <thead>
+      <tr>
+        <th>Interaction type</th>
+        <th>Iterations</th>
+        <th><button id="add-run">Add</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @runs.each_with_index do |run, index| %>
+        <%= fields_for "runs[]", index do |job| %>
+          <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 
   <%= form.submit "Go" %>
   <button id="reset">Clear output</button>
@@ -24,11 +37,32 @@
   window.onload = function (event) {
     var form = document.getElementById("reset");
     form.addEventListener("click", handleReset);
+
+    var addButton = document.getElementById("add-run");
+    addButton.addEventListener("click", handleAdd);
+
+    var removeButtons = document.getElementsByClassName("remove-run");
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].addEventListener("click", handleRemove);
+    }
   }
 
   function handleReset(event) {
     event.preventDefault();
     var output = document.getElementById("faker-output");
     output.innerHTML = "";
+  }
+
+  function handleAdd(event) {
+    event.preventDefault();
+    var table = event.target.parentNode.parentNode.parentNode.parentNode;
+    console.log(table.rows.length)
+    // YOU ARE HERE: need to add row on the end with default values
+  }
+
+  function handleRemove(event) {
+    event.preventDefault();
+    var index = event.target.parentNode.parentNode.rowIndex;
+    document.getElementById("runs").deleteRow(index);
   }
 </script>
