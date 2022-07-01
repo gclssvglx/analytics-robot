@@ -1,0 +1,14 @@
+accordions:
+  class: govuk-accordion__section-heading
+  urls:
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
+tabs:
+  class: govuk-tabs__tab
+  urls:
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/renew-driving-licence
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/bank-holidays
+pageviews:
+  urls:
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/find-a-job

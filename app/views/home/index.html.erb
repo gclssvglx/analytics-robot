@@ -1,19 +1,34 @@
 <h1>GA4 Faker</h1>
 
-<%= form_with url: root_path, method: :get do |form| %>
+<%= form_with url: fake_path, method: :post do |form| %>
   <%= form.hidden_field :fake, value: "yes" %>
 
   <%= form.label :environment %><br>
-  <%= form.select :environment, ["integration", "staging"], selected: params[:environment] %><br>
+  <%= form.select :environment, @environments, selected: params[:environment] %><br>
 
   <%= form.label :interaction_type %><br>
-  <%= form.text_field :interaction_type, value: params[:interaction_type] %><br>
+  <%= form.select :interaction_type, @interaction_types, selected: params[:interaction_type] %><br>
 
   <%= form.label :iterations %><br>
-  <%= form.number_field :iterations, value: params[:iterations] %><br>
+  <%= form.number_field :iterations, value: params[:iterations] || 1 %><br>
 
   <%= form.submit "Go" %>
+  <button id="reset">Clear output</button>
 <% end %>
 
+<p>Output</p>
 <%= turbo_frame_tag id="faker-output" do %>
 <% end %>
+
+<script>
+  window.onload = function (event) {
+    var form = document.getElementById("reset");
+    form.addEventListener("click", handleReset);
+  }
+
+  function handleReset(event) {
+    event.preventDefault();
+    var output = document.getElementById("faker-output");
+    output.innerHTML = "";
+  }
+</script>

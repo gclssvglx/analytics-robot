@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
   def index
-    if params[:fake].present?
-      FakerJob.perform_now
-    end
+    @interaction_types = ApplicationController.helpers.interaction_types
+    @environments = %w[integration] # just add 'staging'
+  end
+
+  def fake
+    FakerJob.perform_now(params)
   end
 end

@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get "faker/index"
+  post "home/fake", as: "fake"
   root "home#index"
 end

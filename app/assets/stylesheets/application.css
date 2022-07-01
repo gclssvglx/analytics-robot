@@ -14,10 +14,11 @@
  *= require_self
  */
 
-
- #faker-output {
-  border: 1px solid gray;
-  width: 100%;
-  height: 300px;
+#faker-output {
+  overflow: auto;
+  height: 450px;
+  padding: 10px;
+  border: 1px solid #d8dae1;
   border-radius: 5px;
- }
+  font-size: 0.8em;
+}
