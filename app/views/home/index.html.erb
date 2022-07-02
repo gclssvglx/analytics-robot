@@ -1,50 +1,72 @@
-<h1>GA4 Faker</h1>
+<div class="row">
+  <div class="col-4">
+    <%= form_with url: fake_path, method: :post do |form| %>
+      <div class="mb-3">
+        <%= form.label :environment, class: "form-label" %>
+        <%= form.select :environment, @environments, { selected: params[:environment] }, { class: "form-select" } %>
+      </div>
 
-<%= form_with url: fake_path, method: :post do |form| %>
-  <%= form.label :environment %><br>
-  <%= form.select :environment, @environments, selected: params[:environment] %><br>
+      <hr>
 
-  <% unless @runs.present? %>
-    <% @runs = ["#{@interaction_types.first}:1"] %>
-  <% end %>
-
-  <table id="runs">
-    <thead>
-      <tr>
-        <th>Interaction type</th>
-        <th>Iterations</th>
-        <th><button id="add-run">Add</button></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @runs.each_with_index do |run, index| %>
-        <%= fields_for "runs[]", index do |job| %>
-          <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
+      <% if @runs.present? %>
+        <%= form.label :runs, class: "form-label" %>
+        <% @runs.each_with_index do |run, index| %>
+          <%= fields_for "runs[]", index do |job| %>
+            <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
+          <% end %>
         <% end %>
       <% end %>
-    </tbody>
-  </table>
 
-  <%= form.submit "Go" %>
-  <button id="reset">Clear output</button>
-<% end %>
+      <%= form.submit "Process", class: "btn btn-success" %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">Add Run</button>
+      <button id="reset" class="btn btn-secondary">Clear</button>
+    <% end %>
+  </div>
 
-<p>Output</p>
-<%= turbo_frame_tag id="faker-output" do %>
-<% end %>
+  <div class="col-8">
+    <p>Output</p>
+    <%= turbo_frame_tag id="faker-output" do %>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal fade" id="add-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add-modal-label">Add Run</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-8">
+            <%= select_tag :add_interaction_type, options_for_select(@interaction_types), class: "form-select" %>
+          </div>
+          <div class="col-4">
+            <%= number_field_tag :add_iterations, 1, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="add-run" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   window.onload = function (event) {
-    var form = document.getElementById("reset");
-    form.addEventListener("click", handleReset);
-
-    var addButton = document.getElementById("add-run");
-    addButton.addEventListener("click", handleAdd);
+    var reset = document.getElementById("reset");
+    reset.addEventListener("click", handleReset);
 
     var removeButtons = document.getElementsByClassName("remove-run");
     for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].addEventListener("click", handleRemove);
     }
+
+    var addRun = document.getElementById("add-run");
+    addRun.addEventListener("click", handleAddRun);
   }
 
   function handleReset(event) {
@@ -53,16 +75,30 @@
     output.innerHTML = "";
   }
 
-  function handleAdd(event) {
-    event.preventDefault();
-    var table = event.target.parentNode.parentNode.parentNode.parentNode;
-    console.log(table.rows.length)
-    // YOU ARE HERE: need to add row on the end with default values
-  }
-
   function handleRemove(event) {
     event.preventDefault();
-    var index = event.target.parentNode.parentNode.rowIndex;
-    document.getElementById("runs").deleteRow(index);
+    var index = event.target.id.split("-")[1];
+    var runId = "run-" + index;
+    var interactionType = document.getElementById("runs_" + index + "_interaction_type");
+    var interaction = interactionType.options[interactionType.selectedIndex].text;
+    var iterations = document.getElementById("runs_" + index + "_iterations").value;
+    var run = document.getElementById(runId);
+    var currentUrl = document.location;
+    var newUrl = currentUrl.toString().replace("&runs[]=" + interaction + ":" + iterations, "");
+
+    run.parentNode.removeChild(run);
+    history.replaceState({}, "", newUrl);
+    window.location.reload();
+  }
+
+  function handleAddRun(event) {
+    event.preventDefault();
+    var interactionType = document.getElementById("add_interaction_type");
+    var interaction = interactionType.options[interactionType.selectedIndex].text;
+    var iterations = document.getElementById("add_iterations").value;
+    var newUrl = new URL(document.location + "&runs[]=" + interaction + ":" + iterations);
+
+    history.replaceState({}, "", newUrl);
+    window.location.reload();
   }
 </script>

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  protect_from_forgery :except => :add_run
+
   def index
     if params[:env] && params[:runs]
       @environment = params[:env]

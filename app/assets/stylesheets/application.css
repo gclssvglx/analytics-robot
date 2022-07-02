@@ -13,12 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-#faker-output {
-  overflow: auto;
-  height: 450px;
-  padding: 10px;
-  border: 1px solid #d8dae1;
-  border-radius: 5px;
-  font-size: 0.8em;
-}

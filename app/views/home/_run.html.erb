@@ -1,6 +1,14 @@
-<% interaction_type, iterations = run.split(":") %>
-<tr>
-  <td width="50%"><%= job.select :interaction_type, interaction_types, selected: interaction_type %></td>
-  <td width="30%"><%= job.number_field :iterations, value: iterations %></td>
-  <td width="20%"><button class="remove-run">Remove</button></td>
-</tr>
+<div id="run-<%= index %>" class="row mb-3">
+  <% run = "tabs:1" unless run.present? %>
+  <% interaction_type, iterations = run.split(":") %>
+
+  <div class="col-6">
+    <%= job.select :interaction_type, interaction_types, { selected: interaction_type }, { class: "form-select" } %>
+  </div>
+  <div class="col-3">
+    <%= job.number_field :iterations, value: iterations, class: "form-control" %>
+  </div>
+  <div class="col-3">
+    <button id="remove-<%= index %>" class="btn btn-danger btn-sm remove-run">Remove</button>
+  </div>
+</div>
