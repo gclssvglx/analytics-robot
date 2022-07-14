@@ -4,7 +4,11 @@ class CreateEvents < GoogleTagManager
   end
 
   def run
-    events_output_to_file
+    if display == "browser"
+      create_events
+    else
+      events_output_to_file
+    end
   end
 
   private
@@ -35,8 +39,12 @@ class CreateEvents < GoogleTagManager
   end
 
   def output_event_data
-    @output_file.puts get_event
-    @output_file.puts "\n"
+    if display == "browser"
+      ActionCable.server.broadcast 'faker_channel', get_event.to_json
+    else
+      @output_file.puts get_event
+      @output_file.puts "\n"
+    end
   end
 
   def events_output_to_file

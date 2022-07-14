@@ -45,4 +45,8 @@ class GoogleTagManager
     url = environment_url(url, environment)
     driver.get url
   end
+
+  def display
+    options[:display]
+  end
 end
