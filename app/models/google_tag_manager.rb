@@ -27,4 +27,22 @@ class GoogleTagManager
   def iterations
      options[:iterations] ||= 1
   end
+
+  def clickables
+    driver.find_elements(class: find_interaction_class)
+  end
+
+  def events
+    #execute_script should be used over #evaluate_script whenever possible.
+    #evaluate_script will always return a result. The return value will be
+    #converted back to Ruby objects, which in case of complex objects is very expensive
+    #https://makandracards.com/makandra/12317-capybara-selenium-evaluate_script-might-freeze-your-browser-use-execute_script
+
+    driver.execute_script("return dataLayer")
+  end
+
+  def get_url(url)
+    url = environment_url(url, environment)
+    driver.get url
+  end
 end
