@@ -3,6 +3,7 @@ require "yaml"
 require "fileutils"
 
 class GoogleTagManager
+  include InteractionConcern
   attr_reader :options, :interactions, :driver, :output_file
 
   def initialize(options)
