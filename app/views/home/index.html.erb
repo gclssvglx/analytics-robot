@@ -1,59 +1,27 @@
-<div class="row">
-  <div class="col-4">
-    <%= form_with url: fake_path, method: :post do |form| %>
-      <div class="mb-3">
-        <%= form.label :environment, class: "form-label" %>
-        <%= form.select :environment, @environments, { selected: params[:environment] }, { class: "form-select" } %>
-      </div>
+<%= form_with url: fake_path, method: :post do |form| %>
+  <%= form.label :environment %>
+  <%= form.select :environment, @environments, { selected: params[:environment] }, {} %>
 
-      <hr>
-
-      <% if @runs.present? %>
-        <%= form.label :runs, class: "form-label" %>
-        <% @runs.each_with_index do |run, index| %>
-          <%= fields_for "runs[]", index do |job| %>
-            <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
-          <% end %>
-        <% end %>
+  <% if @runs.present? %>
+    <%= form.label :runs %>
+    <% @runs.each_with_index do |run, index| %>
+      <%= fields_for "runs[]", index do |job| %>
+        <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
       <% end %>
-
-      <%= form.submit "Process", class: "btn btn-success" %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">Add Run</button>
-      <button id="reset" class="btn btn-secondary">Clear</button>
     <% end %>
-  </div>
+  <% end %>
 
-  <div class="col-8">
-    <p>Output</p>
-    <%= turbo_frame_tag id="faker-output" do %>
-    <% end %>
-  </div>
-</div>
+  <%= form.submit "Process" %>
+  <button id="reset">Clear</button>
+<% end %>
 
-<div class="modal fade" id="add-modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="add-modal-label">Add Run</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-8">
-            <%= select_tag :add_interaction_type, options_for_select(@interaction_types), class: "form-select" %>
-          </div>
-          <div class="col-4">
-            <%= number_field_tag :add_iterations, 1, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" id="add-run" class="btn btn-primary">Add</button>
-      </div>
-    </div>
-  </div>
-</div>
+<p>Output</p>
+<%= turbo_frame_tag id="faker-output" do %>
+<% end %>
+
+<%= select_tag :add_interaction_type, options_for_select(@interaction_types) %>
+<%= number_field_tag :add_iterations, 1 %>
+<button type="button" id="add-run">Add</button>
 
 <script>
   window.onload = function (event) {
