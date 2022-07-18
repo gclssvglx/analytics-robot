@@ -18,6 +18,8 @@ gem 'selenium-webdriver', '~> 4.0'
 gem 'webdrivers', '~> 5.0'
 gem 'capybara'
 
+gem "dartsass-rails"
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

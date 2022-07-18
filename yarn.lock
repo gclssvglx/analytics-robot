@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+"govuk-frontend@^4.2.0":
+  "integrity" "sha512-IHbnz5DbnPjuCv4lQvtJGoCNAKAN6byKqmaej8hjd6Y/KTaAuw10npijeqfRJNO4WdDX9a34+n+SC/UmWdjfGQ=="
+  "resolved" "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-4.2.0.tgz"
+  "version" "4.2.0"

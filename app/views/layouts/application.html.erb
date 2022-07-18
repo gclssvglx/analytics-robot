@@ -10,7 +10,16 @@
   </head>
 
   <body>
+    <script>
+      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
+    
     <%= link_to "Example URL", "/?env=integration&runs[]=pageviews:1&runs[]=tabs:2&runs[]=accordions:3", class: "nav-link" %>
     <%= yield %>
+
+    <script src="govuk.js"></script>
+    <script>
+      window.GOVUKFrontend.initAll()
+    </script>
   </body>
 </html>
