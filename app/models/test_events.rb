@@ -1,4 +1,4 @@
-class TestEvents < GoogleTagManager
+class TestEvents < GtmEventGenerator
   def initialize(options)
     super
   end

@@ -2,7 +2,7 @@ require "webdrivers"
 require "yaml"
 require "fileutils"
 
-class GoogleTagManager
+class GtmEventGenerator
   include InteractionConcern
   attr_reader :options, :interactions, :driver, :output_file
 

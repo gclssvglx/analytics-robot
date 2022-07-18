@@ -1,4 +1,4 @@
-class FakeEvents < GoogleTagManager
+class FakeEvents < GtmEventGenerator
   def initialize(options)
     super
   end
