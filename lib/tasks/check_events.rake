@@ -1,6 +1,6 @@
 desc 'Check event data is as expected'
 task :check_events, [:action, :environment, :interaction_type, :iterations] => :environment do |_, args|
-  # Example: bundle exec rake check_events[create,integration,accordions,2]
+  # Example: bundle exec rake check_events[fake,integration,accordions,2]
   validate_args(args)
 
   options = {
@@ -10,14 +10,14 @@ task :check_events, [:action, :environment, :interaction_type, :iterations] => :
     iterations: args[:iterations]
   }
 
-  klass = if options[:action] == "create"
+  klass = if options[:action] == "fake"
     # Output events to a file
-    CreateEvents.new(options)
+    FakeEvents.new(options)
   elsif options[:action] == "test"
     # Diff events against the expected event structure
     TestEvents.new(options)
   else
-    "Invalid action param - Must be 'test' or 'create"
+    "Invalid action param - Must be 'test' or 'fake"
     exit
   end
 

@@ -1,11 +1,11 @@
-class CreateEvents < GoogleTagManager
+class FakeEvents < GoogleTagManager
   def initialize(options)
     super
   end
 
   def run
     if display == "browser"
-      create_events
+      fake_events
     else
       events_output_to_file
     end
@@ -13,7 +13,7 @@ class CreateEvents < GoogleTagManager
 
   private
 
-  def create_events
+  def fake_events
     begin
       if interaction_type == "pageviews"
         find_interaction_urls.each do |url|
@@ -50,7 +50,7 @@ class CreateEvents < GoogleTagManager
   def events_output_to_file
     begin
       @output_file = File.open("log/#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.log", "w")
-      create_events
+      fake_events
     ensure
       @output_file.close
     end
