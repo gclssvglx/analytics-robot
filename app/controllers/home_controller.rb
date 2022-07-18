@@ -14,6 +14,7 @@ class HomeController < ApplicationController
   def fake
     params[:runs].each do |key, value|
       value[:environment] = params[:environment]
+      value[:display] = "browser"
       FakerJob.perform_now value
     end
   end
