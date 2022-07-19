@@ -1,104 +1,22 @@
-<div class="row">
-  <div class="col-4">
-    <%= form_with url: fake_path, method: :post do |form| %>
-      <div class="mb-3">
-        <%= form.label :environment, class: "form-label" %>
-        <%= form.select :environment, @environments, { selected: params[:environment] }, { class: "form-select" } %>
-      </div>
-
-      <hr>
-
-      <% if @runs.present? %>
-        <%= form.label :runs, class: "form-label" %>
-        <% @runs.each_with_index do |run, index| %>
-          <%= fields_for "runs[]", index do |job| %>
-            <%= render partial: 'run', locals: { interaction_types: @interaction_types, run: run, job: job, index: index } %>
-          <% end %>
-        <% end %>
-      <% end %>
-
-      <%= form.submit "Process", class: "btn btn-success" %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">Add Run</button>
-      <button id="reset" class="btn btn-secondary">Clear</button>
-    <% end %>
+<%= form_with url: fake_path, method: :post do |form| %>
+  <div class="govuk-form-group">
+    <%= form.label :environment, class: "govuk-label" %>
+    <%= form.select :environment, @environments, { selected: @environments.first }, { class: "govuk-select" } %>
   </div>
 
-  <div class="col-8">
-    <p>Output</p>
-    <%= turbo_frame_tag id="faker-output" do %>
-    <% end %>
+  <div class="govuk-form-group">
+    <%= form.label :interaction_type, class: "govuk-label" %>
+    <%= form.select :interaction_type, @interaction_types, { selected: @interaction_types.first }, { class: "govuk-select" } %>
   </div>
-</div>
 
-<div class="modal fade" id="add-modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="add-modal-label">Add Run</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-8">
-            <%= select_tag :add_interaction_type, options_for_select(@interaction_types), class: "form-select" %>
-          </div>
-          <div class="col-4">
-            <%= number_field_tag :add_iterations, 1, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" id="add-run" class="btn btn-primary">Add</button>
-      </div>
-    </div>
+  <div class="govuk-form-group">
+    <%= form.label :iterations, class: "govuk-label" %>
+    <%= form.number_field :iterations, value: 1, class: "govuk-input govuk-input--width-10" %>
   </div>
-</div>
 
-<script>
-  window.onload = function (event) {
-    var reset = document.getElementById("reset");
-    reset.addEventListener("click", handleReset);
+  <%= form.submit "Process", class: "govuk-button" %>
+<% end %>
 
-    var removeButtons = document.getElementsByClassName("remove-run");
-    for (var i = 0; i < removeButtons.length; i++) {
-      removeButtons[i].addEventListener("click", handleRemove);
-    }
-
-    var addRun = document.getElementById("add-run");
-    addRun.addEventListener("click", handleAddRun);
-  }
-
-  function handleReset(event) {
-    event.preventDefault();
-    var output = document.getElementById("faker-output");
-    output.innerHTML = "";
-  }
-
-  function handleRemove(event) {
-    event.preventDefault();
-    var index = event.target.id.split("-")[1];
-    var runId = "run-" + index;
-    var interactionType = document.getElementById("runs_" + index + "_interaction_type");
-    var interaction = interactionType.options[interactionType.selectedIndex].text;
-    var iterations = document.getElementById("runs_" + index + "_iterations").value;
-    var run = document.getElementById(runId);
-    var currentUrl = document.location;
-    var newUrl = currentUrl.toString().replace("&runs[]=" + interaction + ":" + iterations, "");
-
-    run.parentNode.removeChild(run);
-    history.replaceState({}, "", newUrl);
-    window.location.reload();
-  }
-
-  function handleAddRun(event) {
-    event.preventDefault();
-    var interactionType = document.getElementById("add_interaction_type");
-    var interaction = interactionType.options[interactionType.selectedIndex].text;
-    var iterations = document.getElementById("add_iterations").value;
-    var newUrl = new URL(document.location + "&runs[]=" + interaction + ":" + iterations);
-
-    history.replaceState({}, "", newUrl);
-    window.location.reload();
-  }
-</script>
+<h2 class="govuk-heading-l">Output</h2>
+<%= turbo_frame_tag id="faker-output" do %>
+<% end %>
