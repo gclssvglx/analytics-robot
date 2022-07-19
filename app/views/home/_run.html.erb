@@ -1,8 +1,0 @@
-<div id="run-<%= index %>">
-  <% run = "tabs:1" unless run.present? %>
-  <% interaction_type, iterations = run.split(":") %>
-
-  <%= job.select :interaction_type, interaction_types, { selected: interaction_type }, {} %>
-  <%= job.number_field :iterations, value: iterations %>
-  <button id="remove-<%= index %>">Remove</button>
-</div>

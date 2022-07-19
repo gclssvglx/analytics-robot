@@ -66,9 +66,17 @@
 
     <div class="govuk-width-container ">
       <main class="govuk-main-wrapper " id="main-content" role="main">
-        <h1 class="govuk-heading-xl">GA4 Faker</h1>
-        <%= link_to "Example URL", "/?env=integration&runs[]=pageviews:1&runs[]=tabs:2&runs[]=accordions:3", class: "nav-link" %>
-        <%= yield %>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">GA4 Faker</h1>
+            <%= yield %>
+          </div>
+          <div class="govuk-grid-column-one-third">
+            <p class="govuk-body">
+              <%= link_to "Example URL", "/?env=integration&runs[]=pageviews:1&runs[]=tabs:2&runs[]=accordions:3", class: "govuk-link" %>
+            </p>
+          </div>
+        </div>
       </main>
     </div>
 
