@@ -12,3 +12,6 @@ pageviews:
     - https://www.[ENVIRONMENT].publishing.service.gov.uk
     - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
     - https://www.[ENVIRONMENT].publishing.service.gov.uk/find-a-job
+random:
+  urls:
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/random

@@ -15,7 +15,7 @@ class FakeEvents < GtmEventGenerator
 
   def fake_events
     begin
-      if interaction_type == "pageviews"
+      if %w(pageviews random).include?(interaction_type)
         find_interaction_urls.each do |url|
           iterations.to_i.times do
             get_url(url)
@@ -58,7 +58,7 @@ class FakeEvents < GtmEventGenerator
 
   def get_event
     event = nil
-    if interaction_type == "pageviews"
+    if %w(pageviews random).include?(interaction_type)
       events.each do |e|
         event = e if e["event"] == "config_ready"
       end
