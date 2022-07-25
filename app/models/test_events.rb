@@ -37,7 +37,7 @@ class TestEvents < GtmEventGenerator
   end
 
   def test_result(expected_event)
-    puts events.last == expected_event ? "😀" : "🤮 : #{diff_events(events.last, expected_event)}"
+    puts events.last.except("gtm.uniqueEventId".to_sym).eql?(expected_event.except("gtm.uniqueEventId".to_sym)) ? "😀" : "🤮 : #{diff_events(events.last, expected_event)}"
   end
 
   def test_tab_events(tab)
