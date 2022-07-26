@@ -1,8 +1,4 @@
 class TestEvents < GtmEventGenerator
-  def initialize(options)
-    super
-  end
-
   def run
     tester
   end

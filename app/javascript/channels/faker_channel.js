@@ -19,6 +19,8 @@ consumer.subscriptions.create("FakerChannel", {
       dataDisplay += json["event_data"]["type"] + " | " + json["event_data"]["text"]
     } else if (json["event"] == "page_view") {
       dataDisplay += json["event"] + " | " + json["page_view"]["title"]
+    } else {
+      dataDisplay += "event"
     }
     dataDisplay += "</span>"
     dataDisplay += "</summary>"

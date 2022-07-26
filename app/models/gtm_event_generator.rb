@@ -6,9 +6,9 @@ class GtmEventGenerator
   include InteractionConcern
   attr_reader :options, :interactions, :driver, :output_file
 
-  def initialize(options)
+  def initialize(options, interactions = interaction_data)
     @options = options
-    @interactions = interaction_data
+    @interactions = interactions
     @capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
       "goog:chromeOptions": { args: %w(headless disable-gpu) }
     )
@@ -37,8 +37,11 @@ class GtmEventGenerator
     #evaluate_script will always return a result. The return value will be
     #converted back to Ruby objects, which in case of complex objects is very expensive
     #https://makandracards.com/makandra/12317-capybara-selenium-evaluate_script-might-freeze-your-browser-use-execute_script
-
-    driver.execute_script("return dataLayer")
+    begin
+      driver.execute_script("return dataLayer")
+    rescue
+      puts "dataLayer is not configured for that page"
+    end
   end
 
   def get_url(url)

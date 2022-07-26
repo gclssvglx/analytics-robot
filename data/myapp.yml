@@ -1,0 +1,9 @@
+random:
+  urls:
+    - https://www.[ENVIRONMENT].publishing.service.gov.uk/random
+links:
+  class: event-link-click
+  urls:
+    - https://bright-tartufo-3c9320.netlify.app/ua
+    - https://bright-tartufo-3c9320.netlify.app/ga4
+    - https://bright-tartufo-3c9320.netlify.app/dualtagging

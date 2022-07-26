@@ -6,7 +6,7 @@
 
   <div class="govuk-form-group">
     <%= form.label :interaction_type, class: "govuk-label" %>
-    <%= form.select :interaction_type, @interaction_types, { selected: @interaction_types.first }, { class: "govuk-select" } %>
+    <%= form.select :interaction_type, @interaction_types << ["links"], { selected: @interaction_types.first }, { class: "govuk-select" } %>
   </div>
 
   <div class="govuk-form-group">
