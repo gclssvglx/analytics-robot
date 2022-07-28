@@ -23,7 +23,7 @@ task :check_events, [:action, :environment, :interaction_type, :iterations] => :
 
   klass.run
 
-  puts "Done!"
+  puts "\nDone!"
 end
 
 def validate_args(args)

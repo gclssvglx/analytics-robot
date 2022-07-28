@@ -28,30 +28,21 @@ class TestEvents < GtmEventGenerator
     end
   end
 
-  def event_name(clickable)
-    clickable.attribute("data-gtm-event-name")
-  end
-
-  def data_attributes(clickable)
-    JSON.parse(clickable.attribute("data-gtm-attributes"))
-  end
-
   def test_result(expected_event)
-    puts events.last.except("gtm.uniqueEventId".to_sym).eql?(expected_event.except("gtm.uniqueEventId".to_sym)) ? "😀" : "🤮 : #{diff_events(events.last, expected_event)}"
+    last_event = events.last.except("gtm.uniqueEventId")
+    print last_event.eql?(expected_event) ? "😀" : "\n🤮 : #{diff_events(last_event, expected_event)}\n"
   end
 
   def test_tab_events(tab)
     tab.click
-
-    expected_event = create_event(event_name(tab), events.length, data_attributes(tab), data_attributes(tab)["state"])
+    expected_event = create_event(events.last["event_data"])
     test_result(expected_event)
   end
 
   def test_accordion_events(accordion)
     %w[opened closed].each do |state|
       accordion.click
-
-      expected_event = create_event(event_name(accordion), events.length, data_attributes(accordion), state)
+      expected_event = create_event(events.last["event_data"])
       test_result(expected_event)
     end
   end
@@ -65,19 +56,19 @@ class TestEvents < GtmEventGenerator
     end
   end
 
-  def create_event(event_name, id, data_attributes, state)
+  def create_event(data_attributes)
     {
-      "event" => "analytics",
-      "event_name" => event_name,
-      "gtm.uniqueEventId" => id,
-      "link_url" => current_url,
-      "ui" => {
+      "event" => "event_data",
+      "event_data" => {
+        "action" => data_attributes["action"],
+        "event_name" => data_attributes["event_name"],
+        "external" => data_attributes["external"],
         "index" => data_attributes["index"],
-        "index-total" => data_attributes["index-total"],
+        "index_total" => data_attributes["index_total"],
         "section" => data_attributes["section"],
-        "action" => state,
         "text" => data_attributes["text"],
-        "type" => data_attributes["type"]
+        "type" => data_attributes["type"],
+        "url" => data_attributes["url"],
       }
     }
   end
