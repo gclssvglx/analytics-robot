@@ -1,8 +1,4 @@
 class FakeEvents < GtmEventGenerator
-  def initialize(options)
-    super
-  end
-
   def run
     if display == "browser"
       fake_events
@@ -63,7 +59,7 @@ class FakeEvents < GtmEventGenerator
         event = e if e["event"] == "page_view"
       end
     else
-      event = events.last
+      event = events.last if events
     end
     event.to_json
   end
