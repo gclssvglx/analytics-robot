@@ -15,10 +15,10 @@ consumer.subscriptions.create("FakerChannel", {
     var dataDisplay = "<details class=\"govuk-details\" data-module=\"govuk-details\">"
     dataDisplay += "<summary class=\"govuk-details__summary\">"
     dataDisplay += "<span class=\"govuk-details__summary-text\">"
-    if (json["ui"]) {
-      dataDisplay += json["ui"]["type"] + " | " + json["ui"]["text"]
-    } else {
-      dataDisplay += json["event"] + " | " + json["page"]["title"]
+    if (json["event"] == "event_data") {
+      dataDisplay += json["event_data"]["type"] + " | " + json["event_data"]["text"]
+    } else if (json["event"] == "page_view") {
+      dataDisplay += json["event"] + " | " + json["page_view"]["title"]
     }
     dataDisplay += "</span>"
     dataDisplay += "</summary>"

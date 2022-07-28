@@ -60,7 +60,7 @@ class FakeEvents < GtmEventGenerator
     event = nil
     if %w(pageviews random).include?(interaction_type)
       events.each do |e|
-        event = e if e["event"] == "config_ready"
+        event = e if e["event"] == "page_view"
       end
     else
       event = events.last
