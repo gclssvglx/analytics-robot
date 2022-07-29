@@ -16,9 +16,8 @@ The tool is a standard [Ruby on Rails](https://rubyonrails.org/) project - and d
 
 ```bash
 bundle install
-bundle exec yarn install
 bundle exec npm install
-// Q: do we need yarn and npm here?
+bundle exec yarn install
 ```
 
 ### Running the application
