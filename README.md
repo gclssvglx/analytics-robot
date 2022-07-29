@@ -1,4 +1,4 @@
-# GA4 Faker
+![logotype](https://repository-images.githubusercontent.com/504593718/e7d63c5c-0050-48d8-a2f1-2f79c3a6f2cf)
 
 A tool for generating realistic Google Analytics 4 (GA4) events on the [GOV.UK](https://www.gov.uk) `integration` and `staging` environments. It does this by simply navigating to pages and (if required) interacting with specific elements and components (tags, accordions, links etc) in the same way a real user might.
 
