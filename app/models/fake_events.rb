@@ -30,8 +30,15 @@ class FakeEvents < GtmEventGenerator
           iterations.to_i.times do
             get_url(url)
             clickables.each do |clickable|
-              clickable.click
-              output_event_data
+              if interaction_type == "accordions"
+                %w[opened closed].each do |state|
+                  clickable.click
+                  output_event_data
+                end
+              else
+                clickable.click
+                output_event_data
+              end
             end
           end
         end
@@ -62,7 +69,7 @@ class FakeEvents < GtmEventGenerator
   def get_event
     event = nil
     if %w(pageviews random).include?(interaction_type)
-      events.each do |e|
+      events.reverse.each do |e|
         event = e if e["event"] == "page_view"
       end
     else
