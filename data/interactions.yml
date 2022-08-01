@@ -1,9 +1,12 @@
 accordions:
-  class: govuk-accordion__section-heading
+  class:
+    - govuk-accordion__show-all
+    - govuk-accordion__section-heading
   urls:
     - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
 tabs:
-  class: govuk-tabs__tab
+  class:
+    - govuk-tabs__tab
   urls:
     - https://www.[ENVIRONMENT].publishing.service.gov.uk/renew-driving-licence
     - https://www.[ENVIRONMENT].publishing.service.gov.uk/bank-holidays

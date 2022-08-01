@@ -29,7 +29,11 @@ class GtmEventGenerator
   end
 
   def clickables
-    driver.find_elements(class: find_interaction_class)
+    elements = []
+    find_interaction_class.each do |klass|
+      elements += driver.find_elements(class: klass)
+    end
+    elements
   end
 
   def events
