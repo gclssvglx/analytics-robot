@@ -20,6 +20,9 @@ class FakeEvents < GtmEventGenerator
           iterations.to_i.times do
             get_url(url)
             output_event_data
+            # We may not need the sleep here, if in production the queue is slow enough
+            # Anything lower than 5 does not generate random pages
+            sleep 5 if interaction_type == "random"
           end
         end
       else
