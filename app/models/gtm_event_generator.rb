@@ -10,7 +10,7 @@ class GtmEventGenerator
     @options = options
     @interactions = interaction_data
     @capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      "goog:chromeOptions": { args: ["headless", "disable-gpu", "user-agent=Analytics Robot"] }
+      "goog:chromeOptions": { args: ["headless", "disable-gpu", "user-agent=Analytics Robot"] },
     )
     @driver = Selenium::WebDriver.for :chrome, capabilities: @capabilities
     FileUtils.mkdir_p "log"
@@ -25,7 +25,7 @@ class GtmEventGenerator
   end
 
   def iterations
-     options[:iterations] ||= 1
+    options[:iterations] ||= 1
   end
 
   def clickables
@@ -37,10 +37,10 @@ class GtmEventGenerator
   end
 
   def events
-    #execute_script should be used over #evaluate_script whenever possible.
-    #evaluate_script will always return a result. The return value will be
-    #converted back to Ruby objects, which in case of complex objects is very expensive
-    #https://makandracards.com/makandra/12317-capybara-selenium-evaluate_script-might-freeze-your-browser-use-execute_script
+    # execute_script should be used over #evaluate_script whenever possible.
+    # evaluate_script will always return a result. The return value will be
+    # converted back to Ruby objects, which in case of complex objects is very expensive
+    # https://makandracards.com/makandra/12317-capybara-selenium-evaluate_script-might-freeze-your-browser-use-execute_script
 
     driver.execute_script("return dataLayer")
   end

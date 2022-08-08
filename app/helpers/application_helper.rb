@@ -1,6 +1,6 @@
 module ApplicationHelper
   def interactions
-    @interactions ||= YAML.load_file('data/interactions.yml')
+    @interactions ||= YAML.load_file("data/interactions.yml")
   end
 
   def interaction_types
