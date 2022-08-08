@@ -1,5 +1,5 @@
-require 'webdrivers'
-require 'capybara'
+require "webdrivers"
+require "capybara"
 
 class FakerJob < ApplicationJob
   queue_as :default

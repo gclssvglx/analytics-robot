@@ -1,40 +1,35 @@
 class TestEvents < GtmEventGenerator
-  def initialize(options)
-    super
-  end
-
   def run
     tester
   end
 
-  private
+private
 
   def tester
-    begin
-      find_interaction_urls.each do |url|
-        iterations.to_i.times do
-          get_url(url)
-          if interaction_type == "pageviews"
-            test_pageview_events if interaction_type == "pageviews"
-          elsif %w[tabs accordions].include?(interaction_type)
-            clickables.each do |clickable|
-              if interaction_type == "tabs"
-                test_tab_events(clickable)
-              elsif interaction_type == "accordions"
-                test_accordion_events(clickable)
-              end
+    find_interaction_urls.each do |url|
+      iterations.to_i.times do
+        get_url(url)
+        if interaction_type == "pageviews"
+          test_pageview_events if interaction_type == "pageviews"
+        elsif %w[tabs accordions].include?(interaction_type)
+          clickables.each do |clickable|
+            case interaction_type
+            when "tabs"
+              test_tab_events(clickable)
+            when "accordions"
+              test_accordion_events(clickable)
             end
           end
         end
       end
-    ensure
-      driver.quit
     end
+  ensure
+    driver.quit
   end
 
   def test_result(actual_event, expected_event)
     event = actual_event.except("gtm.uniqueEventId")
-    print event.eql?(expected_event) ? "😀" : "\n🤮 : #{diff_events(event, expected_event)}\n"
+    Rails.logger.debug event.eql?(expected_event) ? "😀" : "\n🤮 : #{diff_events(event, expected_event)}\n"
   end
 
   def test_tab_events(tab)
@@ -44,7 +39,7 @@ class TestEvents < GtmEventGenerator
   end
 
   def test_accordion_events(accordion)
-    %w[opened closed].each do |state|
+    %w[opened closed].each do |_state|
       accordion.click
       expected_event = create_event_data(events.last["event_data"])
       test_result(events.last, expected_event)
@@ -65,7 +60,7 @@ class TestEvents < GtmEventGenerator
     if uri.fragment
       "#{uri.path}##{uri.fragment}"
     else
-      "#{uri.path}"
+      uri.path.to_s
     end
   end
 
@@ -82,7 +77,7 @@ class TestEvents < GtmEventGenerator
         "text" => data_attributes["text"],
         "type" => data_attributes["type"],
         "url" => data_attributes["url"],
-      }
+      },
     }
   end
 
@@ -116,13 +111,13 @@ class TestEvents < GtmEventGenerator
         "updated_at" => data_attributes["updated_at"],
         "withdrawn" => data_attributes["withdrawn"],
         "world_locations" => data_attributes["world_locations"],
-      }
+      },
     }
   end
 
   def diff_events(event_a, event_b)
     Hash[*(
-      (event_b.size > event_a.size) ? event_b.to_a - event_a.to_a : event_a.to_a - event_b.to_a
+      event_b.size > event_a.size ? event_b.to_a - event_a.to_a : event_a.to_a - event_b.to_a
     ).flatten]
   end
 end
