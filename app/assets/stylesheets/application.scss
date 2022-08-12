@@ -1,3 +1,11 @@
 // Sassy
 
 @import "../../../node_modules/govuk-frontend/govuk/all.scss";
+
+.turbo-progress-bar {
+  // visibility: hidden;
+  height: 10px;
+  background-color: #00703c;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
