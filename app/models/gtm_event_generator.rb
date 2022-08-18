@@ -4,13 +4,13 @@ require "fileutils"
 
 class GtmEventGenerator
   include InteractionConcern
-  attr_reader :options, :interactions, :driver, :output_file
+  attr_reader :options, :interactions, :driver, :capabilities, :output_file
 
   def initialize(options)
     @options = options
     @interactions = interaction_data
     @capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      "goog:chromeOptions": { args: %w(headless disable-gpu) }
+      "goog:chromeOptions": { args: ["headless", "disable-gpu", "user-agent=Analytics Robot"] }
     )
     @driver = Selenium::WebDriver.for :chrome, capabilities: @capabilities
     FileUtils.mkdir_p "log"
