@@ -1,5 +1,33 @@
 {
+  "name": "analytics-robot",
+  "description": "A tool for generating realistic Google Analytics 4 (GA4) events on the GOV.UK integration and staging environments. It does this by simply navigating to pages and (if required) interacting with specific elements and components (tags, accordions, links etc) in the same way a real user might.",
+  "private": true,
+  "author": "Government Digital Service",
+  "license": "MIT",
+  "scripts": {
+    "lint": "yarn run lint:js && yarn run lint:scss",
+    "lint:js": "standard 'app/javascript/application.js' 'app/javascript/channels/*.js'",
+    "lint:scss": "stylelint app/assets/stylesheets/"
+  },
+  "standardx": {
+    "env": {
+      "browser": true
+    }
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-var": 0
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-gds/scss"
+  },
   "dependencies": {
     "govuk-frontend": "^4.2.0"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0",
+    "stylelint": "^14.9.1",
+    "stylelint-config-gds": "^0.2.0"
   }
 }
