@@ -20,7 +20,7 @@
 
 /node_modules/*
 yarn-error.log
-coverage
+/coverage
 
 
 # Ignore master key for decrypting credentials and more.
