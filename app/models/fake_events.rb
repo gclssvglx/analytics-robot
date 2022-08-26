@@ -11,7 +11,8 @@ private
 
   def fake_events
     if %w[pageviews random].include?(interaction_type)
-      find_interaction_urls.each do |url|
+      find_interaction_urls.each_with_index do |url, index|
+        accept_all_cookies(url) if index == 1
         iterations.to_i.times do
           get_url(url)
           output_event_data
@@ -21,7 +22,8 @@ private
         end
       end
     else
-      find_interaction_urls.each do |url|
+      find_interaction_urls.each_with_index do |url, index|
+        accept_all_cookies(url) if index == 1
         iterations.to_i.times do
           get_url(url)
           clickables.each do |clickable|
@@ -68,5 +70,15 @@ private
       event = events.last
     end
     event.to_json
+  end
+
+  def accept_all_cookies(url)
+    url = environment_url(url, environment)
+    uri = URI.parse(url)
+    root_url = "#{uri.scheme}://#{uri.host}"
+
+    driver.get root_url
+    driver.find_element(:xpath, "//*[@data-accept-cookies='true']").click
+    driver.find_element(:xpath, "//*[@data-hide-cookie-banner='true']").click
   end
 end
