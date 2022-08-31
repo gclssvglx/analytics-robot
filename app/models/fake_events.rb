@@ -81,4 +81,11 @@ private
     driver.find_element(:xpath, "//*[@data-accept-cookies='true']").click
     driver.find_element(:xpath, "//*[@data-hide-cookie-banner='true']").click
   end
+
+  def get_url(url)
+    url = environment_url(url, environment)
+    url = ApplicationController.helpers.append_utm(url, interaction_type, environment)
+    puts "Calling: #{url}"
+    driver.get url
+  end
 end
