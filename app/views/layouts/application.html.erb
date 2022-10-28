@@ -64,26 +64,7 @@
       </div>
     </header>
 
-    <div class="govuk-width-container ">
-      <main class="govuk-main-wrapper " id="main-content" role="main">
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl">Analytics Robot</h1>
-            <%= yield %>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <ul class="govuk-list">
-              <li>
-                <%= link_to "Random [10]", fake_path(environment: "integration", interaction_type: "random", iterations: 10), data: { turbo_method: "post" }, class: "govuk-link" %>
-              </li>
-              <li>
-                <%= link_to "Random [100]", fake_path(environment: "integration", interaction_type: "random", iterations: 100), data: { turbo_method: "post" }, class: "govuk-link" %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </main>
-    </div>
+    <%= yield %>
 
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">

@@ -5,4 +5,5 @@
 //= link channels/index.js
 //= link channels/consumer.js
 //= link channels/faker_channel.js
+//= link channels/developer_channel.js
 //= link_tree ../builds

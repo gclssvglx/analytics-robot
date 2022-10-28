@@ -1,0 +1,21 @@
+<div class="govuk-width-container ">
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">Analytics Robot | Developer</h1>
+        <%= form_with url: runner_path, method: :post do |form| %>
+          <div class="govuk-form-group">
+            <%= form.label :url, class: "govuk-label" %>
+            <%= form.text_field :url, class: "govuk-input" %>
+          </div>
+
+          <%= form.submit "Process", class: "govuk-button" %>
+        <% end %>
+
+        <h2 class="govuk-heading-l">Output</h2>
+        <%= turbo_frame_tag id="developer-output" do %>
+        <% end %>
+      </div>
+    </div>
+  </main>
+</div>
