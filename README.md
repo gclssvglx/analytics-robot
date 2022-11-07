@@ -1,10 +1,14 @@
 ![logotype](https://repository-images.githubusercontent.com/504593718/08cf2ea6-cf81-42aa-8bfc-dd3d9c7fd16f)
 
-A tool for generating realistic Google Analytics 4 (GA4) events on the [GOV.UK](https://www.gov.uk) `integration` and `staging` environments. It does this by simply navigating to pages and (if required) interacting with specific elements and components (tags, accordions, links etc) in the same way a real user might.
+A tool for developers and performance analysts that are working on replacing Google Universal Analaytics (UA) with Google Analytics 4 (GA4) on [GOV.UK](https://www.gov.uk).
 
-It can also be used to test that the resulting events contain the data - in a predetermined and specific data structure - are as expected and haven't changed. Useful to validate that changes within the overall system haven't altered your expected analytics behaviour and event output.
+It is designed to do the following:
 
-It was built primarily for Performance Analysts and others who want to generate bulk events quickly, easily and in a pre-determined manner.
+* Generate realistic GA4 events. This works by simply navigating to a list of known pages with specific components on, and interacting with the elements and components (tags, accordions, links etc) in the same way a real user might.
+
+* Test that the resulting events contain the data expected. This ensures that the events generated haven't been changed or altered.
+
+* Assist developers when adding or testing event interactions. Essentially, a developer can supply any URL (including localhost), the tool will then find all GA4 elements on the page and click them all. A suitable report will then be produced.
 
 ## Architecture
 
@@ -28,13 +32,13 @@ For development...
 bin/dev
 ```
 
-Should now be running at [http://localhost:3000](http://localhost:3000/)
-
-For production...
+or
 
 ```bash
-// TODO
+rails s
 ```
+
+Should now be running at [http://localhost:3000](http://localhost:3000/)
 
 ### Testing
 
@@ -77,3 +81,7 @@ bundle exec rake check_events[test,integration,accordions,2]
 ```
 
 Output is logged to a date/time named file in the [log](log/) directory.
+
+## The `developer` route
+
+This tool can be found at: http://localhost:3000/developer/index, simply enter the URL that you'd like to check the events for and click `Process`. The result will be a report detailing the URL tested and a list of the events found and created. The raw event data is also presented for reference.
