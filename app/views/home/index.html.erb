@@ -1,22 +1,47 @@
-<%= form_with url: fake_path, method: :post do |form| %>
-  <div class="govuk-form-group">
-    <%= form.label :environment, class: "govuk-label" %>
-    <%= form.select :environment, @environments, { selected: @environments.first }, { class: "govuk-select" } %>
-  </div>
+<div class="govuk-width-container ">
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Analytics Robot</h1>
+        <%= form_with url: fake_path, method: :post do |form| %>
+          <div class="govuk-form-group">
+            <%= form.label :environment, class: "govuk-label" %>
+            <%= form.select :environment, @environments, { selected: @environments.first }, { class: "govuk-select" } %>
+          </div>
 
-  <div class="govuk-form-group">
-    <%= form.label :interaction_type, class: "govuk-label" %>
-    <%= form.select :interaction_type, @interaction_types, { selected: @interaction_types.first }, { class: "govuk-select" } %>
-  </div>
+          <div class="govuk-form-group">
+            <%= form.label :interaction_type, class: "govuk-label" %>
+            <%= form.select :interaction_type, @interaction_types, { selected: @interaction_types.first }, { class: "govuk-select" } %>
+          </div>
 
-  <div class="govuk-form-group">
-    <%= form.label :iterations, class: "govuk-label" %>
-    <%= form.number_field :iterations, value: 1, class: "govuk-input govuk-input--width-10" %>
-  </div>
+          <div class="govuk-form-group">
+            <%= form.label :iterations, class: "govuk-label" %>
+            <%= form.number_field :iterations, value: 1, class: "govuk-input govuk-input--width-10" %>
+          </div>
 
-  <%= form.submit "Process", class: "govuk-button" %>
-<% end %>
+          <%= form.submit "Process", class: "govuk-button" %>
+        <% end %>
 
-<h2 class="govuk-heading-l">Output</h2>
-<%= turbo_frame_tag id="faker-output" do %>
-<% end %>
+        <h2 class="govuk-heading-l">Output</h2>
+        <%= turbo_frame_tag id="faker-output" do %>
+        <% end %>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <ul class="govuk-list">
+          <li>
+            <%= link_to "Random [10]", fake_path(environment: "integration", interaction_type: "random", iterations: 10), data: { turbo_method: "post" }, class: "govuk-link" %>
+          </li>
+          <li>
+            <%= link_to "Random [100]", fake_path(environment: "integration", interaction_type: "random", iterations: 100), data: { turbo_method: "post" }, class: "govuk-link" %>
+          </li>
+          <li>
+            <hr>
+          </li>
+          <li>
+            <%= link_to "Developer", developer_path, class: "govuk-link" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</div>

@@ -10,9 +10,11 @@ class FakeEvents < GtmEventGenerator
 private
 
   def fake_events
+    # This is a problem - at this point we don't have a url!
+    accept_all_cookies("https://www.integration.publishing.service.gov.uk")
+
     if %w[pageviews random].include?(interaction_type)
       find_interaction_urls.each_with_index do |url, index|
-        accept_all_cookies(url) if index == 1
         iterations.to_i.times do
           get_url(url)
           output_event_data
@@ -23,7 +25,6 @@ private
       end
     else
       find_interaction_urls.each_with_index do |url, index|
-        accept_all_cookies(url) if index == 1
         iterations.to_i.times do
           get_url(url)
           clickables.each do |clickable|
@@ -85,7 +86,6 @@ private
   def get_url(url)
     url = environment_url(url, environment)
     url = ApplicationController.helpers.append_utm(url, interaction_type, environment)
-    puts "Calling: #{url}"
     driver.get url
   end
 end
