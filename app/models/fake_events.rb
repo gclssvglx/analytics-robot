@@ -14,7 +14,7 @@ private
     accept_all_cookies("https://www.integration.publishing.service.gov.uk")
 
     if %w[pageviews random].include?(interaction_type)
-      find_interaction_urls.each_with_index do |url, index|
+      find_interaction_urls.each_with_index do |url, _index|
         iterations.to_i.times do
           get_url(url)
           output_event_data
@@ -24,7 +24,7 @@ private
         end
       end
     else
-      find_interaction_urls.each_with_index do |url, index|
+      find_interaction_urls.each_with_index do |url, _index|
         iterations.to_i.times do
           get_url(url)
           clickables.each do |clickable|
