@@ -29,12 +29,6 @@ bundle exec yarn install
 For development...
 
 ```bash
-bin/dev
-```
-
-or
-
-```bash
 rails s
 ```
 

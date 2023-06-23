@@ -96,6 +96,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
+    ffi (1.15.5)
     gds-api-adapters (81.0.4)
       addressable
       link_header
@@ -275,6 +276,14 @@ GEM
       rubocop (~> 1.31)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (4.4.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -313,6 +322,7 @@ GEM
       railties (>= 6.0.0)
     strscan (3.0.4)
     thor (1.2.1)
+    tilt (2.2.0)
     timeout (0.3.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
@@ -362,6 +372,7 @@ DEPENDENCIES
   redis
   rspec-rails
   rubocop-govuk
+  sassc-rails
   selenium-webdriver
   simplecov
   sprockets-rails
