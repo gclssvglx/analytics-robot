@@ -3,6 +3,8 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">Analytics Robot</h1>
+        <h2 class="govuk-heading-m">Run our automated GA4 tests on an environment</h2>
+        <p class="govuk-body">This form will run any tests listed in interactions.yaml on the chosen environment</p>
         <%= form_with url: fake_path, method: :post do |form| %>
           <div class="govuk-form-group">
             <%= form.label :environment, class: "govuk-label" %>
@@ -29,16 +31,13 @@
       <div class="govuk-grid-column-one-third">
         <ul class="govuk-list">
           <li>
-            <%= link_to "Random [10]", fake_path(environment: "integration", interaction_type: "random", iterations: 10), data: { turbo_method: "post" }, class: "govuk-link" %>
-          </li>
-          <li>
-            <%= link_to "Random [100]", fake_path(environment: "integration", interaction_type: "random", iterations: 100), data: { turbo_method: "post" }, class: "govuk-link" %>
+            <%= link_to "Get 10 random pageview objects on Integration", fake_path(environment: "integration.publishing.service.gov.uk", interaction_type: "random", iterations: 10), data: { turbo_method: "post" }, class: "govuk-link" %>
           </li>
           <li>
             <hr>
           </li>
           <li>
-            <%= link_to "Developer", developer_path, class: "govuk-link" %>
+            <%= link_to "See all GA4 events for a given page", developer_path, class: "govuk-link" %>
           </li>
         </ul>
       </div>

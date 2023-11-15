@@ -9,9 +9,9 @@ class FakeEvents < GtmEventGenerator
 
 private
 
+  # Fake events here means the robot pretends to be a human - this still sends real data to the dataLayer.
   def fake_events
-    # This is a problem - at this point we don't have a url!
-    accept_all_cookies("https://www.integration.publishing.service.gov.uk")
+    accept_all_cookies("https://www." + environment)
 
     if %w[pageviews random].include?(interaction_type)
       find_interaction_urls.each_with_index do |url, _index|
@@ -79,8 +79,8 @@ private
     root_url = "#{uri.scheme}://#{uri.host}"
 
     driver.get root_url
-    driver.find_element(:xpath, "//*[@data-accept-cookies='true']").click
-    driver.find_element(:xpath, "//*[@data-hide-cookie-banner='true']").click
+    driver.find_element(:css, "[data-accept-cookies]").click
+    driver.find_element(:css, "[data-hide-cookie-banner]").click
   end
 
   def get_url(url)

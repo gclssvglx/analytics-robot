@@ -3,31 +3,31 @@ accordions:
     - govuk-accordion__show-all
     - govuk-accordion__section-heading
   urls:
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/hmrc-internal-manuals/employment-income-manual/updates
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/understanding-your-driving-test-result/car-driving-test
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/world/afghanistan
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/service-manual/agile-delivery
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/service-manual/helping-people-to-use-your-service
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/service-manual/user-research
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/service-manual/technology
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/the-highway-code/traffic-signs
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/4-lamps-reflectors-and-electrical-equipment
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/understanding-your-driving-test-result/car-driving-test
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158
-    # - https://www.[ENVIRONMENT].publishing.service.gov.uk/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/5-axles-wheels-tyres-and-suspension
+    - https://www.[ENVIRONMENT]/coronavirus
+    # - https://www.[ENVIRONMENT]/hmrc-internal-manuals/employment-income-manual/updates
+    # - https://www.[ENVIRONMENT]/guidance/understanding-your-driving-test-result/car-driving-test
+    # - https://www.[ENVIRONMENT]/world/afghanistan
+    # - https://www.[ENVIRONMENT]/service-manual/agile-delivery
+    # - https://www.[ENVIRONMENT]/service-manual/helping-people-to-use-your-service
+    # - https://www.[ENVIRONMENT]/service-manual/user-research
+    # - https://www.[ENVIRONMENT]/service-manual/technology
+    # - https://www.[ENVIRONMENT]/guidance/the-highway-code/traffic-signs
+    # - https://www.[ENVIRONMENT]/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/4-lamps-reflectors-and-electrical-equipment
+    # - https://www.[ENVIRONMENT]/guidance/understanding-your-driving-test-result/car-driving-test
+    # - https://www.[ENVIRONMENT]/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations
+    # - https://www.[ENVIRONMENT]/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158
+    # - https://www.[ENVIRONMENT]/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/5-axles-wheels-tyres-and-suspension
 tabs:
   class:
     - govuk-tabs__tab
   urls:
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/renew-driving-licence
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/bank-holidays
+    - https://www.[ENVIRONMENT]/renew-driving-licence
+    - https://www.[ENVIRONMENT]/bank-holidays
 pageviews:
   urls:
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/coronavirus
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/find-a-job
+    - https://[ENVIRONMENT]
+    - https://www.[ENVIRONMENT]/coronavirus
+    - https://www.[ENVIRONMENT]/find-a-job
 random:
   urls:
-    - https://www.[ENVIRONMENT].publishing.service.gov.uk/random
+    - https://www.[ENVIRONMENT]/random

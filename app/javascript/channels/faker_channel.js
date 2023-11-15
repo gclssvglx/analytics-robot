@@ -12,7 +12,7 @@ consumer.subscriptions.create('FakerChannel', {
   received (data) {
     const json = JSON.parse(data)
 
-    let dataDisplay = '<details class="govuk-details" data-module="govuk-details">'
+    let dataDisplay = 'Event: <details class="govuk-details" data-module="govuk-details">'
     dataDisplay += '<summary class="govuk-details__summary">'
     dataDisplay += '<span class="govuk-details__summary-text">'
     if (json.event === 'event_data') {

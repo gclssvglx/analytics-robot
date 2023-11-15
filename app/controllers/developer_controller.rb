@@ -1,5 +1,3 @@
-require "webdrivers"
-
 class DeveloperController < ApplicationController
   def index; end
 
@@ -14,7 +12,7 @@ class DeveloperController < ApplicationController
     accept_cookies(driver)
     click_elements(driver)
 
-    events = driver.execute_script("return dataLayer")
+    events = driver.execute_script("if(window.dataLayer){ return window.dataLayer } else { return ['The dataLayer is unavailable on this page'] }")
     ActionCable.server.broadcast "developer_channel", events
     driver.quit
   end
@@ -22,7 +20,7 @@ class DeveloperController < ApplicationController
 private
 
   def accept_cookies(driver)
-    element = driver.find_element(:xpath, "//*[@data-accept-cookies='true']")
+    element = driver.find_element(:css, "[data-accept-cookies]")
     element.click unless element.nil?
   rescue StandardError
     Rails.logger.debug "No GOV.UK cookies on page"

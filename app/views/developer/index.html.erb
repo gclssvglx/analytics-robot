@@ -2,7 +2,8 @@
   <main class="govuk-main-wrapper " id="main-content" role="main">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-xl">Analytics Robot | Developer</h1>
+        <h1 class="govuk-heading-xl">See all GA4 events for a given page </h1>
+        <p class="govuk-body">This page shows all the possible GA4 events for a given URL. This is a work in progress - only a few interactions are implemented.<p>
         <%= form_with url: runner_path, method: :post do |form| %>
           <div class="govuk-form-group">
             <%= form.label :url, class: "govuk-label" %>
