@@ -79,8 +79,8 @@ private
     root_url = "#{uri.scheme}://#{uri.host}"
 
     driver.get root_url
-    driver.find_element(:xpath, "//*[@data-accept-cookies='true']").click
-    driver.find_element(:xpath, "//*[@data-hide-cookie-banner='true']").click
+    driver.find_element(:css, "[data-accept-cookies]").click
+    driver.find_element(:css, "[data-hide-cookie-banner]").click
   end
 
   def get_url(url)

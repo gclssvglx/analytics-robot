@@ -1,5 +1,3 @@
-require "webdrivers"
-
 class DeveloperController < ApplicationController
   def index; end
 

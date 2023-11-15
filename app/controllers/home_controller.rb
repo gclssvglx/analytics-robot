@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @interaction_types = ApplicationController.helpers.interaction_types
-    @environments = %w[integration] # just add 'staging' when the time comes!
+    @environments = %w[staging integration]
   end
 
   def fake

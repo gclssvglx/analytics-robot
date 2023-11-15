@@ -24,6 +24,17 @@ bundle exec npm install
 bundle exec yarn install
 ```
 
+
+## Ensure your chromedriver is installed/up to date/has executable permission
+- Update to the latest version of Google Chrome
+- Download the version of `chromedriver` relevant to your version of Google Chrome from https://googlechromelabs.github.io/chrome-for-testing/ - you'll want the `mac-arm64` if you're on an M1 Mac.
+- Extract the `.zip` file.
+- Move `chromedriver` to `/usr/local/bin`, e.g. by doing `cp /Users/[YOUR.NAME]/Downloads/chrome-mac-arm64/chromedriver /usr/local/bin/chromedriver`
+- Change directory to `/usr/local/bin`
+- Run `chmod +x chromedriver` to make chromedriver executable
+- Run `sudo xattr -r -d com.apple.quarantine chromedriver` to remove Apple's security quarantine from the file
+- Restart your terminal, and to test it is working, run `chromedriver -v`
+
 ### Running the application
 
 For development...
@@ -32,7 +43,10 @@ For development...
 rails s
 ```
 
+** NOTE: connect to the VPN if you are testing integration/staging environments, otherwise the tests for these pages will not work!**
+
 Should now be running at [http://localhost:3000](http://localhost:3000/)
+
 
 ### Testing
 

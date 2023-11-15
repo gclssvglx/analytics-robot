@@ -1,4 +1,3 @@
-require "webdrivers"
 require "capybara"
 
 class FakerJob < ApplicationJob
