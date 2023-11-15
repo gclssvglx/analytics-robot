@@ -41,7 +41,7 @@ class GtmEventGenerator
     # converted back to Ruby objects, which in case of complex objects is very expensive
     # https://makandracards.com/makandra/12317-capybara-selenium-evaluate_script-might-freeze-your-browser-use-execute_script
 
-    driver.execute_script("return dataLayer")
+    driver.execute_script("if(window.dataLayer){ return window.dataLayer } else { return ['The dataLayer is unavailable on this page'] }")
   end
 
   def get_url(url)

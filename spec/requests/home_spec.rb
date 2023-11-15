@@ -11,7 +11,7 @@ RSpec.describe "Home", type: :request do
   describe "POST /home/fake" do
     it "returns http success" do
       options = {
-        environment: "integration",
+        environment: "integration.publishing.service.gov.uk",
         interaction_type: "random",
         iterations: "1",
       }

@@ -9,9 +9,9 @@ class FakeEvents < GtmEventGenerator
 
 private
 
+  # Fake events here means the robot pretends to be a human - this still sends real data to the dataLayer.
   def fake_events
-    # This is a problem - at this point we don't have a url!
-    accept_all_cookies("https://www.integration.publishing.service.gov.uk")
+    accept_all_cookies("https://www." + environment)
 
     if %w[pageviews random].include?(interaction_type)
       find_interaction_urls.each_with_index do |url, _index|
