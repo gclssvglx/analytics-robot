@@ -4,6 +4,7 @@
       <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl">See all GA4 events for a given page </h1>
         <p class="govuk-body">This page shows all the possible GA4 events for a given URL. This is a work in progress - only a few interactions are implemented.<p>
+        <p class="govuk-body">Currently, this works by loading a page, and clicking every element with data-ga4-event, data-ga4-link, or data-ga4-form (with some JS to prevent default behaviour.)<p>
         <%= form_with url: runner_path, method: :post do |form| %>
           <div class="govuk-form-group">
             <%= form.label :url, class: "govuk-label" %>

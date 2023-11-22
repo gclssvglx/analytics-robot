@@ -25,9 +25,14 @@ tabs:
     - https://www.[ENVIRONMENT]/bank-holidays
 pageviews:
   urls:
-    - https://[ENVIRONMENT]
+    - https://www.[ENVIRONMENT]
     - https://www.[ENVIRONMENT]/coronavirus
     - https://www.[ENVIRONMENT]/find-a-job
+main_content_links:
+  class:
+    - 'main a'
+  urls:
+    - https://www.[ENVIRONMENT]
 random:
   urls:
     - https://www.[ENVIRONMENT]/random

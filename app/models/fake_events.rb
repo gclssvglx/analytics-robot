@@ -33,6 +33,15 @@ private
                 clickable.click
                 output_event_data
               end
+            elsif interaction_type == "main_content_links"
+              driver.execute_script('
+              document.addEventListener("click", function(e) {
+                if(!e.target.hasAttribute("data-ga4-expandable")) {
+                  e.preventDefault();
+                }
+                })')
+              clickable.click
+              output_event_data
             else
               clickable.click
               output_event_data

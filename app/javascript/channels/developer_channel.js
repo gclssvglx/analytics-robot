@@ -10,6 +10,7 @@ consumer.subscriptions.create('DeveloperChannel', {
   },
 
   received (data) {
+    console.log(data) // Output the dataLayer JSONs to the console for developer benefit
     const url = document.getElementById('url').value
     const outputElement = document.getElementById('developer-output')
 
@@ -81,7 +82,23 @@ consumer.subscriptions.create('DeveloperChannel', {
 
     const pre = document.createElement('pre')
     const code = document.createElement('code')
-    code.innerHTML = this.prettyPrint(JSON.parse(body))
+    const dataLayerEvents = JSON.parse(body)
+    for(var i = 0; i < dataLayerEvents.length; i++) {
+
+      var dataLayerEvent = dataLayerEvents[i]
+      var summary = 'Event'
+      if(dataLayerEvent.event_data) {
+        summary = dataLayerEvent.event_data.event_name + ' - ' + dataLayerEvent.event_data.type + ' - ' + dataLayerEvent.event_data.text
+      }
+      else if (dataLayerEvent.page_view) {
+        summary = 'Pageview'
+      }
+      else if (dataLayerEvent.search_results) {
+        summary = 'Search Results'
+      }
+
+      code.innerHTML += '<details><summary>' + summary + '</summary>' + this.prettyPrint(dataLayerEvents[i])  + '</details>'
+    }
 
     pre.append(code)
     div.append(pre)

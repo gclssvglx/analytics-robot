@@ -30,7 +30,7 @@ class GtmEventGenerator
   def clickables
     elements = []
     find_interaction_class.each do |klass|
-      elements += driver.find_elements(class: klass)
+      elements += driver.find_elements(css: klass)
     end
     elements
   end
