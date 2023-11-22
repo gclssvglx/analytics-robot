@@ -24,21 +24,22 @@ bundle exec npm install
 bundle exec yarn install
 ```
 
+## Setup Chrome for Testing + chromedriver
 
-## Ensure your chromedriver is installed/up to date/has executable permission
-- Update to the latest version of Google Chrome.
-- Note your version of Google Chrome by clicking the Menu in the top right of Chrome, then clicking Help > About Chrome
-- Download the version of `chromedriver` relevant to your version of Google Chrome from https://googlechromelabs.github.io/chrome-for-testing/ - you'll want the `mac-arm64` version if you're on an M1 Mac. **Make sure you have downloaded `chromedriver` and not `chrome` ! (see screenshot)**
 
-![chromedriver](https://github.com/AshGDS/analytics-robot/assets/8880610/ab28421b-9ad1-499d-aefd-146b742bfc96)
-
-- Copy the relevant chromedriver URL from the table, and open it in a new tab so that the download process begins.
-- Once download, extract the `.zip` file by double clicking it.
-- Move the `chromedriver` file to `/usr/local/bin`. You can do this by doing `cp /Users/[YOUR.NAME]/Downloads/chrome-mac-arm64/chromedriver /usr/local/bin/chromedriver`
+- Download both `chrome` AND `chromedriver` from https://googlechromelabs.github.io/chrome-for-testing/ - you'll want the `mac-arm64` version if you're on an M1 Mac.
+- Extract the zip file for `chrome` by double clicking the downloaded file.
+- Open your terminal, and go to the folder where Chrome was extracted, e.g. `~/Downloads/chrome-mac-arm64`
+- Run `sudo xattr -cr 'Google Chrome for Testing.app'`. This removes Apple's security, which prevents files that originated from zip files from being executed.
+- In your Finder, move `Google Chrome for Testing.app` into your Mac's Applications folder, like you usually do to install applications on a Mac.
+- Now, we need to setup `chromedriver`.
+- Extract the `.zip` file for `chromedriver` by double clicking the downloaded file.
+- Move the `chromedriver` file to `/usr/local/bin`. You can do this by running `cp /Users/[YOUR.NAME]/Downloads/chrome-mac-arm64/chromedriver /usr/local/bin/chromedriver`
 - Change directory to `/usr/local/bin` in your terminal
 - Run `chmod +x chromedriver` to make chromedriver executable
 - Run `sudo xattr -r -d com.apple.quarantine chromedriver` to remove Apple's security quarantine from the file
 - Restart your terminal, and to test chromedriver is working, run `chromedriver -v`
+- You shouldn't need to run these steps ever again, unless you want to update your test version of Google Chrome
 
 ### Running the application
 

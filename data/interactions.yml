@@ -1,7 +1,7 @@
 accordions:
   class:
-    - govuk-accordion__show-all
-    - govuk-accordion__section-heading
+    - '.govuk-accordion__show-all'
+    - '.govuk-accordion__section-heading'
   urls:
     - https://www.[ENVIRONMENT]/coronavirus
     # - https://www.[ENVIRONMENT]/hmrc-internal-manuals/employment-income-manual/updates
@@ -19,7 +19,7 @@ accordions:
     # - https://www.[ENVIRONMENT]/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/5-axles-wheels-tyres-and-suspension
 tabs:
   class:
-    - govuk-tabs__tab
+    - '.govuk-tabs__tab'
   urls:
     - https://www.[ENVIRONMENT]/renew-driving-licence
     - https://www.[ENVIRONMENT]/bank-holidays
