@@ -28,6 +28,13 @@ bundle exec yarn install
 
 
 - Download both `chrome` AND `chromedriver` from https://googlechromelabs.github.io/chrome-for-testing/ - you'll want the `mac-arm64` version if you're on an M1 Mac.
+
+![chrome1](https://github.com/gclssvglx/analytics-robot/assets/8880610/be5db406-8248-49d3-819e-a5a04b1fe7fd)
+
+![chrome2](https://github.com/gclssvglx/analytics-robot/assets/8880610/1bf5b037-cfba-46af-a1d0-e415e08b01c6)
+
+
+
 - Extract the zip file for `chrome` by double clicking the downloaded file.
 - Open your terminal, and go to the folder where Chrome was extracted, e.g. `~/Downloads/chrome-mac-arm64`
 - Run `sudo xattr -cr 'Google Chrome for Testing.app'`. This removes Apple's security, which prevents files that originated from zip files from being executed.
