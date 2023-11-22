@@ -4,7 +4,9 @@
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">Analytics Robot</h1>
         <h2 class="govuk-heading-m">Run our automated GA4 tests on an environment</h2>
-        <p class="govuk-body">This form will run any tests listed in interactions.yaml on the chosen environment</p>
+        <p class="govuk-body">This form will run any tests listed in interactions.yaml on the chosen environment.</p>
+        <p class="govuk-body"><strong>Connect to the developer VPN to test on staging/integration environments.</strong></p>
+
         <%= form_with url: fake_path, method: :post do |form| %>
           <div class="govuk-form-group">
             <%= form.label :environment, class: "govuk-label" %>

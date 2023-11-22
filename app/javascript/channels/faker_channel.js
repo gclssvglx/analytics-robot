@@ -11,7 +11,7 @@ consumer.subscriptions.create('FakerChannel', {
 
   received (data) {
     const json = JSON.parse(data)
-
+    console.log(json) // Output the dataLayer JSONs to the console for developer benefit
     let dataDisplay = 'Event: <details class="govuk-details" data-module="govuk-details">'
     dataDisplay += '<summary class="govuk-details__summary">'
     dataDisplay += '<span class="govuk-details__summary-text">'
